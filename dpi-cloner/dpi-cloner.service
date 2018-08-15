@@ -1,0 +1,9 @@
+[Unit]
+Description=Circuit Sword Lite DPI Cloner Service
+ 
+[Service]
+ExecStart=/home/pi/Circuit-Sword-Lite/dpi-cloner/dpi-cloner
+ 
+[Install]
+WantedBy=multi-user.target
+Alias=dpi-cloner.service

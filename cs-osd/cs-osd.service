@@ -1,0 +1,15 @@
+[Unit]
+Description=Circuit Sword Lite OSD Service
+ 
+[Service]
+ExecStart=/home/pi/Circuit-Sword-Lite/cs-osd/cs-osd
+ 
+[Install]
+WantedBy=multi-user.target
+Alias=cs-osd.service
+
+[Journal]
+#Storage=volatile
+#RuntimeMaxUse=100K
+#RuntimeMaxFileSize=100K
+#RuntimeMaxFiles=3
