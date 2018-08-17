@@ -156,7 +156,7 @@ if ! exists "$DEST/etc/emulationstation/themes/pixel/system/theme.xml" ; then
   execute "chown $USER:$USER $DEST/opt/retropie/configs/all/emulationstation/es_settings.cfg"
 fi
 
-# Enable 30sec autosave on roms
+# Enable 30sec autosave
 execute "sed -i \"s/# autosave_interval =/autosave_interval = \"30\"/\" $DEST/opt/retropie/configs/all/retroarch.cfg"
 
 # Disable 'wait for network' on boot
@@ -176,15 +176,17 @@ execute "rm -rf $DEST/tmp/wiringpi"
 execute "rm -f $DEST/etc/systemd/system/cs-osd.service"
 execute "rm -f $DEST/etc/systemd/system/multi-user.target.wants/cs-osd.service"
 execute "rm -f $DEST/lib/systemd/system/cs-osd.service"
+
 execute "rm -f $DEST/etc/systemd/system/cs-hud.service"
 execute "rm -f $DEST/etc/systemd/system/multi-user.target.wants/cs-hud.service"
 execute "rm -f $DEST/lib/systemd/system/cs-hud.service"
+
 execute "rm -f $DEST/lib/systemd/system/dpi-cloner.service"
 
 # Install OSD service
 execute "cp $BINDIR/cs-hud/cs-hud.service $DEST/lib/systemd/system/cs-hud.service"
 
-#execute "systemctl enable cs-osd.service"
+#execute "systemctl enable cs-hud.service"
 execute "ln -s $DEST/lib/systemd/system/cs-hud.service $DEST/etc/systemd/system/cs-hud.service"
 execute "ln -s $DEST/lib/systemd/system/cs-hud.service $DEST/etc/systemd/system/multi-user.target.wants/cs-hud.service"
 

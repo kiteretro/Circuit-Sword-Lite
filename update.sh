@@ -28,14 +28,14 @@ if [ "$EUID" -ne 0 ]
 fi
 
 # Stop OSD
-echo "Stopping OSD.."
-systemctl stop cs-osd.service
+echo "Stopping HUD/OSD.."
+systemctl stop cs-hud.service
 
 echo "Stopping CLONER.."
 systemctl stop dpi-cloner.service
 
 # Update git
-echo "Updating OSD from git.."
+echo "Updating HUD/OSD from git.."
 git fetch --all
 git reset --hard origin/master
 
@@ -47,8 +47,8 @@ echo "Performing script setup.."
 ./install.sh YES
 
 # Start OSD
-echo "Starting OSD.."
-systemctl start cs-osd.service
+echo "Starting HUD/OSD.."
+systemctl start cs-hud.service
 
 # DONE
 echo "DONE!"
