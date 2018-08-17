@@ -164,7 +164,9 @@ execute "rm -f $DEST/etc/systemd/system/dhcpcd.service.d/wait.conf"
 
 # Copy wiringPi library
 execute "cp $BINDIR/settings/libwiringPi.so.2.46 $DEST/usr/local/libwiringPi.so.2.46"
+execute "chmod 775 $DEST/usr/local/libwiringPi.so.2.46"
 execute "ln -s $DEST/usr/local/libwiringPi.so.2.46 $DEST/usr/local/libwiringPi.so"
+execute "chmod 775 $DEST/usr/local/libwiringPi.so"
 
 # Prepare for service install
 execute "rm -f $DEST/etc/systemd/system/cs-osd.service"
