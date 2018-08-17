@@ -162,6 +162,11 @@ execute "sed -i \"s/# autosave_interval =/autosave_interval = \"30\"/\" $DEST/op
 # Disable 'wait for network' on boot
 execute "rm -f $DEST/etc/systemd/system/dhcpcd.service.d/wait.conf"
 
+# Install rfkill
+execute "dpkg -x $BINDIR/settings/rfkill_0.5-1_armhf.deb $DEST/tmp/rfkill"
+execute "cp -r $DEST/tmp/rfkill/* $DEST/"
+execute "rm -rf $DEST/tmp/rfkill"
+
 # Install wiringPi
 execute "dpkg -x $BINDIR/settings/wiringpi_2.46_armhf.deb $DEST/tmp/wiringpi"
 execute "cp -r $DEST/tmp/wiringpi/* $DEST/"
