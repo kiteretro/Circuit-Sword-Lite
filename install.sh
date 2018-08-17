@@ -162,11 +162,10 @@ execute "sed -i \"s/# autosave_interval =/autosave_interval = \"30\"/\" $DEST/op
 # Disable 'wait for network' on boot
 execute "rm -f $DEST/etc/systemd/system/dhcpcd.service.d/wait.conf"
 
-# Copy wiringPi library
-execute "cp $BINDIR/settings/libwiringPi.so.2.46 $DEST/usr/local/libwiringPi.so.2.46"
-execute "chmod 0755 $DEST/usr/local/libwiringPi.so.2.46"
-execute "ln -s $DEST/usr/local/libwiringPi.so.2.46 $DEST/usr/local/libwiringPi.so"
-execute "chmod 0755 $DEST/usr/local/libwiringPi.so"
+# Install wiringPi
+execute "dpkg -x $BINDIR/settings/wiringpi_2.46_armhf.deb $DEST/tmp/wiringpi"
+execute "cp -r $DEST/tmp/wiringpi/* $DEST/"
+execute "rm -rf $DEST/tmp/wiringpi"
 
 # Prepare for service install
 execute "rm -f $DEST/etc/systemd/system/cs-osd.service"
