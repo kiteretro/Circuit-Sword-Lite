@@ -166,21 +166,24 @@ execute "rm -f $DEST/etc/systemd/system/dhcpcd.service.d/wait.conf"
 execute "rm -f $DEST/etc/systemd/system/cs-osd.service"
 execute "rm -f $DEST/etc/systemd/system/multi-user.target.wants/cs-osd.service"
 execute "rm -f $DEST/lib/systemd/system/cs-osd.service"
+execute "rm -f $DEST/etc/systemd/system/cs-hud.service"
+execute "rm -f $DEST/etc/systemd/system/multi-user.target.wants/cs-hud.service"
+execute "rm -f $DEST/lib/systemd/system/cs-hud.service"
 execute "rm -f $DEST/lib/systemd/system/dpi-cloner.service"
 
 # Install OSD service
-execute "cp $BINDIR/cs-osd/cs-osd.service $DEST/lib/systemd/system/cs-osd.service"
+execute "cp $BINDIR/cs-hud/cs-hud.service $DEST/lib/systemd/system/cs-hud.service"
 
 #execute "systemctl enable cs-osd.service"
-execute "ln -s $DEST/lib/systemd/system/cs-osd.service $DEST/etc/systemd/system/cs-osd.service"
-execute "ln -s $DEST/lib/systemd/system/cs-osd.service $DEST/etc/systemd/system/multi-user.target.wants/cs-osd.service"
+execute "ln -s $DEST/lib/systemd/system/cs-hud.service $DEST/etc/systemd/system/cs-hud.service"
+execute "ln -s $DEST/lib/systemd/system/cs-hud.service $DEST/etc/systemd/system/multi-user.target.wants/cs-hud.service"
 
 # Install DPI-CLONER service
 execute "cp $BINDIR/dpi-cloner/dpi-cloner.service $DEST/lib/systemd/system/dpi-cloner.service"
 
 if [[ $DEST == "" ]] ; then
   execute "systemctl daemon-reload"
-  execute "systemctl start cs-osd.service"
+  execute "systemctl start cs-hud.service"
 fi
 
 #####################################################################

@@ -1,12 +1,12 @@
 [Unit]
-Description=Circuit Sword Lite OSD Service
+Description=Circuit Sword Lite HUD/OSD Service
  
 [Service]
-ExecStart=/home/pi/Circuit-Sword-Lite/cs-osd/cs-osd
+ExecStart=/home/pi/Circuit-Sword-Lite/cs-hud/cs-hud
  
 [Install]
 WantedBy=multi-user.target
-Alias=cs-osd.service
+Alias=cs-hud.service
 
 [Journal]
 #Storage=volatile
