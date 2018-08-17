@@ -172,6 +172,11 @@ execute "dpkg -x $BINDIR/settings/wiringpi_2.46_armhf.deb $DEST/tmp/wiringpi"
 execute "cp -r $DEST/tmp/wiringpi/* $DEST/"
 execute "rm -rf $DEST/tmp/wiringpi"
 
+# Enable /ramdisk as a tmpfs (ramdisk)
+if [[ $(grep '/ramdisk' $DEST/etc/fstab) == "" ]] ; then
+  execute "echo 'tmpfs    /ramdisk    tmpfs    defaults,noatime,nosuid,size=100k    0 0' >> $DEST/etc/fstab"
+fi
+
 # Prepare for service install
 execute "rm -f $DEST/etc/systemd/system/cs-osd.service"
 execute "rm -f $DEST/etc/systemd/system/multi-user.target.wants/cs-osd.service"
