@@ -127,6 +127,9 @@ fi
 execute "cp $BINDIR/settings/autostart.sh $DEST/opt/retropie/configs/all/autostart.sh"
 execute "chown $USER:$USER $DEST/opt/retropie/configs/all/autostart.sh"
 
+# Copy ES safe shutdown script
+execute "cp $BINDIR/settings/cs_shutdown.sh $DEST/opt/cs_shutdown.sh"
+
 # Fix splashsreen sound
 if exists "$DEST/etc/init.d/asplashscreen" ; then
   execute "sed -i \"s/ *both/ alsa/\" $DEST/etc/init.d/asplashscreen"
