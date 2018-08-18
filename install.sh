@@ -166,14 +166,10 @@ execute "sed -i \"s/# autosave_interval =/autosave_interval = \"30\"/\" $DEST/op
 execute "rm -f $DEST/etc/systemd/system/dhcpcd.service.d/wait.conf"
 
 # Install rfkill
-execute "dpkg -x $BINDIR/settings/rfkill_0.5-1_armhf.deb $DEST/tmp/rfkill"
-execute "cp -r $DEST/tmp/rfkill/* $DEST/"
-execute "rm -rf $DEST/tmp/rfkill"
+execute "dpkg -x $BINDIR/settings/rfkill_0.5-1_armhf.deb $DEST/"
 
 # Install wiringPi
-execute "dpkg -x $BINDIR/settings/wiringpi_2.46_armhf.deb $DEST/tmp/wiringpi"
-execute "cp -r $DEST/tmp/wiringpi/* $DEST/"
-execute "rm -rf $DEST/tmp/wiringpi"
+execute "dpkg -x $BINDIR/settings/wiringpi_2.46_armhf.deb $DEST/"
 
 # Enable /ramdisk as a tmpfs (ramdisk)
 if [[ $(grep '/ramdisk' $DEST/etc/fstab) == "" ]] ; then
@@ -181,10 +177,6 @@ if [[ $(grep '/ramdisk' $DEST/etc/fstab) == "" ]] ; then
 fi
 
 # Prepare for service install
-execute "rm -f $DEST/etc/systemd/system/cs-osd.service"
-execute "rm -f $DEST/etc/systemd/system/multi-user.target.wants/cs-osd.service"
-execute "rm -f $DEST/lib/systemd/system/cs-osd.service"
-
 execute "rm -f $DEST/etc/systemd/system/cs-hud.service"
 execute "rm -f $DEST/etc/systemd/system/multi-user.target.wants/cs-hud.service"
 execute "rm -f $DEST/lib/systemd/system/cs-hud.service"
