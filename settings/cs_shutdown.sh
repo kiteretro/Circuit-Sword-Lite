@@ -19,6 +19,7 @@ if [[ $ES_PID != "" ]] ; then
 else
 
   echo "Could not find ES PID ($ES_PID)"
+  sudo shutdown -h now &
 
 fi
 

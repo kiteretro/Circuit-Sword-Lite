@@ -183,7 +183,7 @@ execute "rm -f $DEST/lib/systemd/system/cs-hud.service"
 
 execute "rm -f $DEST/lib/systemd/system/dpi-cloner.service"
 
-# Install OSD service
+# Install HUD service
 execute "cp $BINDIR/cs-hud/cs-hud.service $DEST/lib/systemd/system/cs-hud.service"
 
 #execute "systemctl enable cs-hud.service"
