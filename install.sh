@@ -149,6 +149,7 @@ fi
 if ! exists "$PIHOMEDIR/.vice/sdl-vicerc" ; then
   execute "mkdir -p $PIHOMEDIR/.vice/"
   execute "echo 'SoundOutput=2' > $PIHOMEDIR/.vice/sdl-vicerc"
+  execute "chown -R $USER:$USER $PIHOMEDIR/.vice/"
 fi
 
 # Install the pixel theme and set it as default
@@ -156,16 +157,16 @@ if ! exists "$DEST/etc/emulationstation/themes/pixel/system/theme.xml" ; then
   execute "mkdir -p $DEST/etc/emulationstation/themes"
   execute "rm -rf $DEST/etc/emulationstation/themes/pixel"
   execute "git clone --recursive --depth 1 --branch master https://github.com/kiteretro/es-theme-pixel.git $DEST/etc/emulationstation/themes/pixel"
-  execute "cp $BINDIR/settings/es_settings.cfg $DEST/opt/retropie/configs/all/emulationstation/es_settings.cfg"
+  execute "cp -p $BINDIR/settings/es_settings.cfg $DEST/opt/retropie/configs/all/emulationstation/es_settings.cfg"
   execute "sed -i \"s/carbon/pixel/\" $DEST/opt/retropie/configs/all/emulationstation/es_settings.cfg"
-  execute "chown $USER:$USER $DEST/opt/retropie/configs/all/emulationstation/es_settings.cfg"
 fi
 
 # Install runcommand splash
 if ! exists "$DEST/opt/retropie/configs/desktop/launching.png" ; then
   execute "rm -rf /tmp/es-runcommand-splash"
   execute "git clone --recursive --depth 1 --branch master https://github.com/ehettervik/es-runcommand-splash.git /tmp/es-runcommand-splash"
-  execute "cp -r /tmp/es-runcommand-splash/* $DEST/opt/retropie/configs"
+  execute "chown -R $USER:$USER /tmp/es-runcommand-splash"
+  execute "cp -rp /tmp/es-runcommand-splash/* $DEST/opt/retropie/configs"
   execute "rm -rf /tmp/es-runcommand-splash"
 fi
 
