@@ -108,6 +108,7 @@ execute "chown -R $USER:$USER $BINDIR"
 #####################################################################
 # Copy required to /boot
 
+# Config.txt bits
 if ! exists "$DESTBOOT/config_ORIGINAL.txt" ; then
   execute "cp $DESTBOOT/config.txt $DESTBOOT/config_ORIGINAL.txt"
   execute "cp $BINDIR/settings/config.txt $DESTBOOT/config.txt"
@@ -119,6 +120,7 @@ fi
 
 # Copy USB sound
 execute "cp $BINDIR/settings/asound.conf $DEST/etc/asound.conf"
+execute "cp $BINDIR/settings/alsa-base.conf $DEST/etc/modprobe.d/alsa-base.conf"
 
 # Copy autostart
 if ! exists "$DEST/opt/retropie/configs/all/autostart_ORIGINAL.sh" ; then
@@ -157,6 +159,14 @@ if ! exists "$DEST/etc/emulationstation/themes/pixel/system/theme.xml" ; then
   execute "cp $BINDIR/settings/es_settings.cfg $DEST/opt/retropie/configs/all/emulationstation/es_settings.cfg"
   execute "sed -i \"s/carbon/pixel/\" $DEST/opt/retropie/configs/all/emulationstation/es_settings.cfg"
   execute "chown $USER:$USER $DEST/opt/retropie/configs/all/emulationstation/es_settings.cfg"
+fi
+
+# Install runcommand splash
+if ! exists "$DEST/opt/retropie/configs/desktop/launching.png" ; then
+  execute "rm -rf /tmp/es-runcommand-splash"
+  execute "git clone --recursive --depth 1 --branch master https://github.com/ehettervik/es-runcommand-splash.git /tmp/es-runcommand-splash"
+  execute "cp -r /tmp/es-runcommand-splash/* $DEST/opt/retropie/configs"
+  execute "rm -rf /tmp/es-runcommand-splash"
 fi
 
 # Enable 30sec autosave
