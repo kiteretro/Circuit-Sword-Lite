@@ -176,6 +176,9 @@ execute "sed -i \"s/# autosave_interval =/autosave_interval = \"30\"/\" $DEST/op
 # Disable 'wait for network' on boot
 execute "rm -f $DEST/etc/systemd/system/dhcpcd.service.d/wait.conf"
 
+# Remove wifi country disabler
+execute "rm -f $DEST/etc/systemd/system/multi-user.target.wants/wifi-country.service"
+
 # Install rfkill
 execute "dpkg -x $BINDIR/settings/rfkill_0.5-1_armhf.deb $DEST/"
 
