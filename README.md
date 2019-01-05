@@ -51,3 +51,4 @@ The installation includes an update script! This will perform the necessary acti
 1. Enable WIFI and SSH
 2. `cd Circuit-Sword-Lite`
 3. `sudo ./update.sh YES`
+
