@@ -125,6 +125,7 @@ execute "cp $BINDIR/settings/alsa-base.conf $DEST/etc/modprobe.d/alsa-base.conf"
 # Copy autostart
 if ! exists "$DEST/opt/retropie/configs/all/autostart_ORIGINAL.sh" ; then
   execute "mv $DEST/opt/retropie/configs/all/autostart.sh $DEST/opt/retropie/configs/all/autostart_ORIGINAL.sh"
+  execute "echo '/home/pi/$GITHUBPROJECT/settings/kr_logo.png' > $DEST/etc/splashscreen.list"
 fi
 execute "cp $BINDIR/settings/autostart.sh $DEST/opt/retropie/configs/all/autostart.sh"
 execute "chown $USER:$USER $DEST/opt/retropie/configs/all/autostart.sh"
@@ -140,12 +141,12 @@ if exists "$DEST/opt/retropie/supplementary/splashscreen/asplashscreen.sh" ; the
   execute "sed -i \"s/ *both/ alsa/\" $DEST/opt/retropie/supplementary/splashscreen/asplashscreen.sh"
 fi
 
-# Fix N64 audio
+# Fix audio
 if exists "$DEST/opt/retropie/emulators/mupen64plus/bin/mupen64plus.sh" ; then
   execute "sed -i \"s/mupen64plus-audio-omx/mupen64plus-audio-sdl/\" $DEST/opt/retropie/emulators/mupen64plus/bin/mupen64plus.sh"
 fi
 
-# Fix C64 audio
+# Fix audio
 if ! exists "$PIHOMEDIR/.vice/sdl-vicerc" ; then
   execute "mkdir -p $PIHOMEDIR/.vice/"
   execute "echo 'SoundOutput=2' > $PIHOMEDIR/.vice/sdl-vicerc"
